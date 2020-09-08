@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "serve": "node server.js",
-    "dev" : "nodemon server.js"
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +16,15 @@
   "dependencies": {
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "express-ejs-layouts": "^2.5.0",
-    "nodemon": "^2.0.4"
+    "express-ejs-layouts": "^2.5.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "laravel-mix": "^5.0.5",
+    "nodemon": "^2.0.4",
+    "resolve-url-loader": "^3.1.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.12"
   }
 }

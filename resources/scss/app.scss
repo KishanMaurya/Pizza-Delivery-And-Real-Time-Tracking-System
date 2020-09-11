@@ -45,4 +45,9 @@ section.hero {
     color: $pure;
     transition: smooth;
     background: $primary;
+    &:hover{
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+    }
 }

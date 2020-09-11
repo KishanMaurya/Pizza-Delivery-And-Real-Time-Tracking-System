@@ -47,3 +47,9 @@ section.hero {
   background: #FE5F1E;
 }
 
+.order-now:hover {
+  background: #FE5F1E;
+  border-color: #fff;
+  color: #fff;
+}
+

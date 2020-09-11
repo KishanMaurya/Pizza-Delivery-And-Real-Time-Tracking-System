@@ -53,3 +53,24 @@ section.hero {
   color: #fff;
 }
 
+section.cart {
+  background: #f8f8f8;
+}
+
+section.cart .amount {
+  color: #FE5F1E;
+}
+
+section.login {
+  background: #f8f8f8;
+  min-height: calc(100vh - 86px);
+}
+
+section.login a {
+  color: #FE5F1E;
+}
+
+section.login a:hover {
+  color: #b23301;
+}
+

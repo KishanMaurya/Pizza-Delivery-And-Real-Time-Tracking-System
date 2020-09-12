@@ -6,12 +6,13 @@
     <title>Real time Pizza Order</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="icon" type="image" href="/img/logo-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="container mx-auto flex items-center py-4 justify-between">
         <div>
-            <img src="/img/logo.png" alt="logo">
+            <a href="/"><img src="/img/logo.png" alt="logo"></a>
         </div>
         <div>
             <ul class="flex items-center">
@@ -19,7 +20,8 @@
                 <li class="ml-6"><a href="">Offers</a></li>
                 <li class="ml-6"><a href="/register">Register</a></li>
                 <li class="ml-6"><a href="/login">Login</a></li>
-                <li class="ml-6"><a href="/cart" class="inline-block px-4 py-2 rounded-full">
+                <li class="ml-6"><a href="/cart" class="inline-block px-4 py-2 rounded-full flex items-center">
+                    <span id="cartCounter" class="text-white font-bold pr-2"><%= session.cart ? session.cart.totalQty : '' %></span>
                     <img src="/img/cart.png" alt="cart"></a>
                 </li>
             </ul>

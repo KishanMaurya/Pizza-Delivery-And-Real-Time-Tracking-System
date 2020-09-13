@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000
 const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
+const passport = require('passport')
 const MongoDbStore = require('connect-mongo')(session)
 //Database Connection
 const url = 'mongodb://localhost/pizza';
@@ -25,6 +26,7 @@ connection.once('open', ()=>{
   console.log("connection field"+err)
 })
 
+
 //session store
 let mongoStore = new MongoDbStore({
   mongooseConnection:connection,
@@ -40,13 +42,24 @@ app.use(session({
   cookie : {maxAge:1000 * 60 * 60 * 24}//24 hours
 }))
 
+//local stratgi
+const passportInit = require('./app/config/passport')
+passportInit(passport)
+//passport config
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+
 app.use(flash())
 //Assets
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.use((req, res , next) =>{
   res.locals.session = req.session
+  res.locals.user = req.user
   next()
 })
 

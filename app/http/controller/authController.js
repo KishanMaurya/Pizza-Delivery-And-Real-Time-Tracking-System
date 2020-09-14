@@ -2,6 +2,9 @@ const User = require('../../models/user')
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 function authController(){
+    const _getRedirectUrl = (req) => {
+        return req.user.role === 'admin' ? '/admin/orders' : '/customer/orders'
+    }
     return {
         login(req , res){
             res.render('auth/login')
@@ -27,7 +30,7 @@ function authController(){
                         req.flash('error',info.message)
                         return next(err)
                     }
-                    return res.redirect('/')
+                    return res.redirect(_getRedirectUrl(req))
                 })
             })(req,res,next)
         },
@@ -56,13 +59,21 @@ function authController(){
             const hashPassword = await bcrypt.hash(password , 10)
             // Create User
             const user = new User({
-                name:name,
-                email:email,
+                name,
+                email,
                 password:hashPassword
             })
 
             user.save().then((user)=>{
+                // req.flash('success','Register Success .!')
                 //Login
+                req.logIn(user,(err)=>{
+                    if(err){
+                        req.flash('error',info.message)
+                        return next(err)
+                    }
+                    return res.redirect('/')
+                })
                 return res.redirect('/')
             }).catch(err => {
                 console.log(err)

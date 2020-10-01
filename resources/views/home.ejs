@@ -3,7 +3,7 @@
         <div class="container mx-auto flex items-center justify-between">
             <div class="w-1/2">
                 <h6 class="text-lg"><em>Are you hungry ?</em></h6>
-                <h1 class="text-6xl font-bold">Don't wait !</h1>
+                <h1 class="text-3xl md:text-6xl font-bold">Don't wait !</h1>
                 <button class="order-now py-1 px-6 rounded-full flex items-center font-bold">Order Now </button>
             </div>
             <div class="w-1/2">
@@ -14,11 +14,11 @@
 
     <section class="menu container mx-auto py-8">
         <h1 class="text-xl font-bold mb8">All Pizzas</h1>
-        <div class="grid grid-cols-4 row-gap-10 col-gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 row-gap-16 col-gap-12">
 
             <% pizzas.forEach((pizza)=>{
                 %>
-                <div class="w-64 mt-6">
+                <div class="w-full md:w-64 mt-6">
                     <img class="h-40 mb-4 mx-auto" src="/img/<%= pizza.image %>" alt="img">
                     <div class="text-center">
                         <h2 class="mb-4 text-lg "><%= pizza.name %></h2>

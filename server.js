@@ -13,8 +13,8 @@ const MongoDbStore = require('connect-mongo')(session)
 const Emitter = require('events')
 
 //Database Connection
-const url = 'mongodb://localhost/pizza';
-mongoose.connect(url,{
+// const url = 'mongodb://localhost/pizza';
+mongoose.connect(process.env.MONGO_CONNECTION_URL,{
   useNewUrlParser:true,
   useCreateIndex:true,
   useUnifiedTopology:true,
@@ -76,6 +76,9 @@ app.set('view engine' , 'ejs')
 
 require('./routes/web')(app)
 
+app.use((req,res)=>{
+  res.status(400).render('errors/error404')
+})
 const server = app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)
 })
